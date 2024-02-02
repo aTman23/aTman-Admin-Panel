@@ -22388,7 +22388,7 @@ code {
   transition-duration: 0s;
   -webkit-transition-duration: 250ms;
   transition-duration: 250ms;
-  font-family: themify;
+  font-family: "themify";
   opacity: 0;
   filter: alpha(opacity=0);
   -webkit-transform: scale(0);
@@ -26191,7 +26191,7 @@ body.avgrund-active {
 .dataTables_wrapper .dataTable thead .sorting_desc_disabled:before,
 .dataTables_wrapper .dataTable thead .sorting_desc_disabled:after {
   line-height: 2.5;
-  font-family: themify;
+  font-family: "themify";
   font-size: .65rem;
 }
 
@@ -30618,4 +30618,48 @@ div.tagsinput span.tag a {
     width:300px
   }
 }
+
+.post-declaration .declare{
+  position: absolute;
+  right: 20px;
+  margin: 0 0 0 5px;
+}
+.post-declaration{
+  margin: 20px;
+}
+
+@media(max-width:768px){  
+  .post-declaration .declare{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+  }
+}
+
+.post-declaration{
+  display: flex;
+  flex-direction:row;
+}
+#approve{
+  color: white;
+  background-color: #46a146;
+  border-radius: 8px;
+  border: none;
+  font-family: "sans-serif";
+  margin-bottom: 2px;
+}
+
+#delete{
+  color: white;
+  background-color: #a01a1f;
+  border-radius: 8px;
+  border: none;
+  font-family: "sans-serif";
+}
+
+#approve:hover, #delete:hover{
+  font-weight:bold;
+}
+
+
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
