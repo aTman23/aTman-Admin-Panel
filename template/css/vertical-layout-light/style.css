@@ -30592,4 +30592,30 @@ div.tagsinput span.tag a {
   }
 }
 
+@media(max-width:768px){  
+  .expandable-table #anonymous-post-common-checkbox{
+    width:1px;
+  }
+  .expandable-table #anonymous-post-date{
+    display: none;
+  }
+}
+
+@media(min-width:1024px){  
+  .expandable-table #anonymous-post-common-checkbox{
+    width:1px;
+  }
+  .expandable-table #anonymous-post-date{
+    width:200px
+  }
+}
+
+@media(min-width:1280px){  
+  .expandable-table #anonymous-post-common-checkbox{
+    width:2px;
+  }
+  .expandable-table #anonymous-post-date{
+    width:300px
+  }
+}
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
