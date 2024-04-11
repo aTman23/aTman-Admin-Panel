@@ -30661,5 +30661,23 @@ div.tagsinput span.tag a {
   font-weight:bold;
 }
 
+/* Add this CSS to your stylesheet for styling */
+.thumbnail {
+  width: 50px; /* Set the width of the thumbnail */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
+}
+
+.hovered {
+  transform: scale(1.2); /* Increase size on hover */
+}
+
+.image-container {
+  overflow: hidden; /* Hide overflow to create a border effect */
+  width: 50px; /* Set the width of the thumbnail */
+  height: 50px; /* Set the height of the thumbnail */
+}
+
+
 
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
