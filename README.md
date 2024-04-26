@@ -1,11 +1,11 @@
-# Skydash - Free Bootstrap Template
+# PsyShell - Admin - Free Bootstrap Template
 
-Skydash is the latest Bootstrap admin template from BootstrapDash. This template has been meticulously crafted to ensure the best possible experience for developers and users alike. This admin template is super easy to set up, modify and use. The clean design minimizes clutter and improves the overall user experience. Skydash is packed with all the features that fit your needs but not cramped with components you would not even use. It is an excellent fit to build admin panels, e-commerce systems, project management systems, CMS or CRM. It comes with a clean and well-commented code that makes it easy to work with the template. Thus making it an ideal pick for jump-starting your project.
+PsyShell - Admin is the latest Bootstrap admin template from BootstrapDash. This template has been meticulously crafted to ensure the best possible experience for developers and users alike. This admin template is super easy to set up, modify and use. The clean design minimizes clutter and improves the overall user experience. PsyShell - Admin is packed with all the features that fit your needs but not cramped with components you would not even use. It is an excellent fit to build admin panels, e-commerce systems, project management systems, CMS or CRM. It comes with a clean and well-commented code that makes it easy to work with the template. Thus making it an ideal pick for jump-starting your project.
 
 <h1>Demo</h1>
 Click below to check out the live demo.
 
-[![N|Solid](preview.jpg)](https://bootstrapdash.com/demo/skydash-free/template/)
+[![N|Solid](preview.jpg)](https://bootstrapdash.com/demo/PsyShell - Admin-free/template/)
 
 
 #### Credits:
@@ -41,13 +41,13 @@ Click below to check out the live demo.
 
 #### License Information:
 
-Skydash is released under MIT license. Skydash is a free Bootstrap 4 admin template developed from BootstrapDash. Feel free to download it, use it, share it, get creative with it.
+PsyShell - Admin is released under MIT license. PsyShell - Admin is a free Bootstrap 4 admin template developed from BootstrapDash. Feel free to download it, use it, share it, get creative with it.
 
-#### How to use Skydash?
+#### How to use PsyShell - Admin?
 
 -Install node-gyp package. If you don’t know the installation steps, please click [here](https://github.com/nodejs/node-gyp)
 
-- Click the Clone or Download button in GitHub and download as a ZIP file or you can enter the command git clone https://github.com/BootstrapDash/skydash-free-bootstrap-admin-template.git in your terminal to get a copy of this template.
+- Click the Clone or Download button in GitHub and download as a ZIP file or you can enter the command git clone https://github.com/BootstrapDash/PsyShell - Admin-free-bootstrap-admin-template.git in your terminal to get a copy of this template.
   
 -  After the files have been downloaded you will get a folder with all the required files
 
@@ -70,7 +70,7 @@ After Gulp has been installed, follow the steps below to contribute.
   
 - Run the command npm install to install all the dependencies.
   
-- Enter the command gulp serve. This will open Skydash in your default browser.
+- Enter the command gulp serve. This will open PsyShell - Admin in your default browser.
   
 - Make your valuable contribution.
   
@@ -101,4 +101,4 @@ Find us on
 
 Do you need a template with more features and functionalities? Get more with our collection of premium templates with more plugins, eye-catching animations, UI components, and sample pages all fitting together with a high-quality design. Visit https://www.bootstrapdash.com for more admin templates.
 
-Check out the premium version of [Skydash Bootstrap admin template](https://www.bootstrapdash.com/product/skydash-admin-template/)
+Check out the premium version of [PsyShell - Admin Bootstrap admin template](https://www.bootstrapdash.com/product/PsyShell - Admin-admin-template/)

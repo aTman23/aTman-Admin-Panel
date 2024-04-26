@@ -14,9 +14,6 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
     requestData["collegecode"] = requestData["collegecode"].toUpperCase();
     requestData["email"] = requestData["email"].toLowerCase();
 
-
-
-
     try {
 
 
@@ -35,3 +32,9 @@ document.getElementById('registrationForm').addEventListener('submit', async fun
     }
 
 });
+
+
+
+
+
+
