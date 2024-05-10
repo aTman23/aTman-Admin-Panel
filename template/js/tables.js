@@ -47,7 +47,7 @@
             "badge",
             user?.token ? "badge-success" : "badge-danger"
           );
-          statusBadge.textContent = user?.token ? "Active" : "Unactive";
+          statusBadge.textContent = user?.token ? "Active" : "Inactive";
           statusCell.appendChild(statusBadge);
           row.appendChild(statusCell);
           const lastlogin = document.createElement("td");
@@ -93,7 +93,7 @@
   // Call the function to fetch data and populate the table
   fetchDataAndPopulateTable();
 })();
-
+var colleges;
 //  pyscholigist table
 (function () {
   // Function to retrieve data from the server and populate the table
@@ -145,10 +145,41 @@
             "badge",
             user?.token ? "badge-success" : "badge-danger"
           );
-          statusBadge.textContent = user?.token ? "Active" : "Unactive"; // Assuming 'approved' indicates status
+          statusBadge.textContent = user?.token ? "Active" : "Inactive"; // Assuming 'approved' indicates status
           statusCell.appendChild(statusBadge);
           row.appendChild(statusCell);
+          const collegeCell = document.createElement("td");
 
+          if (user?.college) {
+            collegeCell.textContent = user.college;
+          } else {
+            // If user doesn't have a college, create a select element with college options
+            const collegeSelect = document.createElement("select");
+            collegeSelect.classList.add("form-control"); // Optional: Add Bootstrap form-control class for styling
+
+            // Populate select element with colleges
+            populateCollegeSelect(collegeSelect);
+            const updateBtn = document.createElement("button");
+            updateBtn.textContent = "Update";
+            updateBtn.classList.add("btn", "btn-success", "d-none");
+
+            var selectedcollege ;
+            collegeSelect.addEventListener("change", function () {
+              user.college = this.value;
+              selectedcollege = this.value;
+              updateBtn.classList.remove("d-none"); // Show the update button
+            });
+
+            updateBtn.addEventListener("click", function () {
+             
+              assignCollege(user.uid,selectedcollege)
+              updateBtn.classList.add("d-none"); // Hide the update button after updating the user's college
+            });
+            collegeCell.appendChild(collegeSelect);
+            collegeCell.appendChild(updateBtn);
+          }
+
+          row.appendChild(collegeCell);
           // Append the row to the table body
           tableBody.appendChild(row);
 
@@ -181,6 +212,14 @@
   // Call the function to fetch data and populate the table
   fetchDataAndPopulateTable();
 })();
+function populateCollegeSelect(collegeSelect) {
+  colleges?.list?.forEach((college) => {
+    const option = document.createElement("option");
+    option.value = college.collegecode;
+    option.textContent = college.collegecode;
+    collegeSelect.appendChild(option);
+  });
+}
 
 (function () {
   // Function to retrieve data from the server and populate the table
@@ -303,7 +342,7 @@ function formatFirestoreTimestamp(firestoreTimestamp) {
 }
 
 async function deletePost(id) {
-  const response = await fetch("http://localhost:3002/deletePost", {
+  const response = await fetch("https://atman.onrender.com/deletePost", {
     method: "POST",
     body: JSON.stringify({ postId: id }),
     headers: { "Content-Type": "application/json" },
@@ -312,5 +351,64 @@ async function deletePost(id) {
 
   if ((response.status = 200)) {
     alert(response.body.message);
+  }
+}
+
+async function fetchAndStoreColleges() {
+  try {
+    const response = await fetch("https://atman.onrender.com/listcolleges");
+    if (!response.ok) {
+      throw new Error("Failed to fetch colleges");
+    }
+    const colleges = await response.json();
+
+    sessionStorage.setItem("colleges", JSON.stringify(colleges));
+
+    return colleges;
+  } catch (error) {
+    console.error("Error fetching colleges:", error);
+    throw error; // Propagate the error for handling
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
+  try {
+    colleges = JSON.parse(sessionStorage.getItem("colleges"));
+
+    if (!colleges) {
+      // If colleges data is not available in session storage, fetch and store it
+      colleges = await fetchAndStoreColleges();
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+});
+
+
+async function assignCollege(uid, college) {
+  try {
+      const response = await fetch('https://atman.onrender.com/admin/assigncollegetodoctor', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              uid: uid,
+              college: college
+          })
+      });
+
+      if (!response.ok) {
+          throw new Error('Failed to assign college to doctor');
+      }
+
+      const data = await response.json();
+      console.log(data); // Logging the response data
+
+      // You can handle the response data as needed
+
+  } catch (error) {
+      console.error('Error assigning college to doctor:', error);
+      // You can handle the error as needed, e.g., show an error message to the user
   }
 }

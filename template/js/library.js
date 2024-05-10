@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     formData.append('title', title);
     formData.append('author', author);
 
-    fetch('http://localhost:3002/library/upload', {
+    fetch('https://atman.onrender.com/library/upload', {
         method: 'POST',
         body: formData
     })

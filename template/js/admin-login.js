@@ -12,7 +12,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     }
 
    console.log(formData)
-    fetch("http://localhost:3002/admin/login", {
+    fetch("https://atman.onrender.com/admin/login", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'

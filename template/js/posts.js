@@ -15,11 +15,8 @@ async function retrievePostStatus() {
         }
 
         const data = await response.json();
-        console.log(data);
         updateTable(data.pendingPosts);
-        console.log(data.pendingPosts);
         initializeDataTable(); // Initialize DataTable after updating the table content
-        console.log('Post Status:', data.postsStatus);
     } catch (error) {
         console.error('Error:', error.message);
     }
