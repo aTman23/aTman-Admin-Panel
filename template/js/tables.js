@@ -61,6 +61,16 @@
           fristname.textContent = user?.name; // Assuming 'title' is the profile information
           rowu.appendChild(fristname);
 
+          const name = document.createElement("td");
+          name.textContent = user?.nickname; // Assuming 'title' is the profile information
+          rowu.appendChild(name);
+          const year = document.createElement("td");
+          year.textContent = user?.year; // Assuming 'title' is the profile information
+          rowu.appendChild(year);
+          const college = document.createElement("td");
+          college.textContent = `${user?.college || ""}  ${user?.dept || ""}`; // Assuming 'title' is the profile information
+          rowu.appendChild(college);
+
           const gender = document.createElement("td");
           gender.textContent = user?.gender; // Assuming 'mobile' is the mobile number information
           rowu.appendChild(gender);
@@ -82,6 +92,10 @@
 
           tableBodyu.appendChild(rowu);
         });
+
+        // $('#users-table').DataTable();
+        let table = new DataTable("#users-table");
+        new DataTable("#users-table-u");
       } else {
         console.error("Failed to fetch data:", response.error);
       }
@@ -163,7 +177,7 @@ var colleges;
             updateBtn.textContent = "Update";
             updateBtn.classList.add("btn", "btn-success", "d-none");
 
-            var selectedcollege ;
+            var selectedcollege;
             collegeSelect.addEventListener("change", function () {
               user.college = this.value;
               selectedcollege = this.value;
@@ -171,8 +185,7 @@ var colleges;
             });
 
             updateBtn.addEventListener("click", function () {
-             
-              assignCollege(user.uid,selectedcollege)
+              assignCollege(user.uid, selectedcollege);
               updateBtn.classList.add("d-none"); // Hide the update button after updating the user's college
             });
             collegeCell.appendChild(collegeSelect);
@@ -198,9 +211,15 @@ var colleges;
           const aoe = document.createElement("td");
           aoe.textContent = user?.area_of_expertise; // Assuming 'email' is the email information
           rowd.appendChild(aoe);
+          const college = document.createElement("td");
+          college.textContent = user?.college; // Assuming 'email' is the email information
+          rowd.appendChild(college);
 
           tableBodyd.appendChild(rowd);
         });
+
+        new DataTable("#psy-table-u");
+        new DataTable("#psy-table");
       } else {
         console.error("Failed to fetch data:", response.error);
       }
@@ -221,12 +240,12 @@ function populateCollegeSelect(collegeSelect) {
   });
 }
 
-(function () {
-  // Function to retrieve data from the server and populate the table
-  async function fetchDataAndPopulateTable() {
+
+  var page = 1;
+  async function fetchDataAndPopulateTable(page=1) {
     try {
       // Fetch data from the server
-      const url = "https://atman.onrender.com/get-newsfeed";
+      const url = `https://atman.onrender.com/get-newsfeed?page=${page}`;
 
       const response = await fetch(url, {
         method: "GET",
@@ -243,7 +262,7 @@ function populateCollegeSelect(collegeSelect) {
         // Get reference to the table body
         const tableBody = document.getElementById(`posts-data`);
 
-        // Clear existing table rows
+        tableBody.innerHTML = ""
 
         // Iterate over the posts data and populate the table
         posts.forEach((post) => {
@@ -270,7 +289,7 @@ function populateCollegeSelect(collegeSelect) {
           row.appendChild(emailCell);
 
           const statusCell = document.createElement("td");
-          statusCell.textContent = `${post.userDetails.email}\n${post.userDetails.nickname} `;
+          statusCell.textContent = `${post.userDetails.email} `;
           row.appendChild(statusCell);
 
           const deleteCell = document.createElement("td");
@@ -279,7 +298,6 @@ function populateCollegeSelect(collegeSelect) {
           removeButton.classList.add("btn", "btn-danger");
           removeButton.textContent = "Remove";
           removeButton.addEventListener("click", () => {
-            console.log(post.postId);
             deletePost(post.postId);
           });
           deleteCell.appendChild(removeButton);
@@ -287,9 +305,10 @@ function populateCollegeSelect(collegeSelect) {
 
           // Append the row to the table body
           tableBody.appendChild(row);
+          // new DataTable("#posts-list");
         });
       } else {
-        console.error("Failed to fetch data:", response.error);
+        console.log("Failed to fetch data:", response.error);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -298,7 +317,14 @@ function populateCollegeSelect(collegeSelect) {
 
   // Call the function to fetch data and populate the table
   fetchDataAndPopulateTable();
-})();
+
+
+document.getElementById("nextlist").addEventListener("click", ()=>{page = page+1; fetchDataAndPopulateTable(page);});
+
+document.getElementById("prevlist").addEventListener("click", ()=>{if (page >0) {page = page-1; fetchDataAndPopulateTable(page)}})
+
+
+
 
 function formatFirestoreTimestamp(firestoreTimestamp) {
   if (!firestoreTimestamp.lastLogin) {
@@ -384,31 +410,32 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
-
 async function assignCollege(uid, college) {
   try {
-      const response = await fetch('https://atman.onrender.com/admin/assigncollegetodoctor', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              uid: uid,
-              college: college
-          })
-      });
-
-      if (!response.ok) {
-          throw new Error('Failed to assign college to doctor');
+    const response = await fetch(
+      "https://atman.onrender.com/admin/assigncollegetodoctor",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          uid: uid,
+          college: college,
+        }),
       }
+    );
 
-      const data = await response.json();
-      console.log(data); // Logging the response data
+    if (!response.ok) {
+      throw new Error("Failed to assign college to doctor");
+    }
 
-      // You can handle the response data as needed
+    const data = await response.json();
+    console.log(data); // Logging the response data
 
+    // You can handle the response data as needed
   } catch (error) {
-      console.error('Error assigning college to doctor:', error);
-      // You can handle the error as needed, e.g., show an error message to the user
+    console.error("Error assigning college to doctor:", error);
+    // You can handle the error as needed, e.g., show an error message to the user
   }
 }
