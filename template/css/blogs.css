@@ -1,0 +1,35 @@
+.card-container {
+    position: relative;
+    width: 300px;
+    margin: 50px auto;
+}
+.card {
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+.approve {
+    background-color: #28a745;
+}
+.decline {
+    background-color: #dc3545;
+}

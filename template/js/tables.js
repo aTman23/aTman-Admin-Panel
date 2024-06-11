@@ -1,7 +1,6 @@
 (function () {
   // Function to format Firestore timestamp
 
-
   // Function to retrieve data from the server and populate the table
   async function fetchDataAndPopulateTable() {
     try {
@@ -171,104 +170,102 @@ var colleges;
     }
   }
   function populateTable(users) {
-        // Get reference to the table body
-        const tableBody = document.getElementById(`doctor-data`);
-        const tableBodyd = document.getElementById(`doctor-data-d`);
+    // Get reference to the table body
+    const tableBody = document.getElementById(`doctor-data`);
+    const tableBodyd = document.getElementById(`doctor-data-d`);
 
-        // Clear existing table rows
+    // Clear existing table rows
 
-        // Iterate over the posts data and populate the table
-        users.forEach((user) => {
-          // Create table row
-          const row = document.createElement("tr");
-          const rowd = document.createElement("tr");
+    // Iterate over the posts data and populate the table
+    users.forEach((user) => {
+      // Create table row
+      const row = document.createElement("tr");
+      const rowd = document.createElement("tr");
 
-          // Create table data cells and populate them with post data
-          const profileCell = document.createElement("td");
-          profileCell.textContent = user?.name; // Assuming 'title' is the profile information
-          row.appendChild(profileCell);
+      // Create table data cells and populate them with post data
+      const profileCell = document.createElement("td");
+      profileCell.textContent = user?.name; // Assuming 'title' is the profile information
+      row.appendChild(profileCell);
 
-          const mobileCell = document.createElement("td");
-          mobileCell.textContent = user?.phonenumber; // Assuming 'mobile' is the mobile number information
-          row.appendChild(mobileCell);
+      const mobileCell = document.createElement("td");
+      mobileCell.textContent = user?.phonenumber; // Assuming 'mobile' is the mobile number information
+      row.appendChild(mobileCell);
 
-          const emailCell = document.createElement("td");
-          emailCell.textContent = user?.email; // Assuming 'email' is the email information
-          row.appendChild(emailCell);
+      const emailCell = document.createElement("td");
+      emailCell.textContent = user?.email; // Assuming 'email' is the email information
+      row.appendChild(emailCell);
 
-          const statusCell = document.createElement("td");
-          const statusBadge = document.createElement("label");
-          statusBadge.classList.add(
-            "badge",
-            user?.token ? "badge-success" : "badge-danger"
-          );
-          statusBadge.textContent = user?.token ? "Active" : "Inactive"; // Assuming 'approved' indicates status
-          statusCell.appendChild(statusBadge);
-          row.appendChild(statusCell);
-          const collegeCell = document.createElement("td");
+      const statusCell = document.createElement("td");
+      const statusBadge = document.createElement("label");
+      statusBadge.classList.add(
+        "badge",
+        user?.token ? "badge-success" : "badge-danger"
+      );
+      statusBadge.textContent = user?.token ? "Active" : "Inactive"; // Assuming 'approved' indicates status
+      statusCell.appendChild(statusBadge);
+      row.appendChild(statusCell);
+      const collegeCell = document.createElement("td");
 
-          if (user?.college) {
-            collegeCell.textContent = user.college;
-          } else {
-            // If user doesn't have a college, create a select element with college options
-            const collegeSelect = document.createElement("select");
-            collegeSelect.classList.add("form-control"); // Optional: Add Bootstrap form-control class for styling
+      if (user?.college) {
+        collegeCell.textContent = user.college;
+      } else {
+        // If user doesn't have a college, create a select element with college options
+        const collegeSelect = document.createElement("select");
+        collegeSelect.classList.add("form-control"); // Optional: Add Bootstrap form-control class for styling
 
-            // Populate select element with colleges
-            populateCollegeSelect(collegeSelect);
-            const updateBtn = document.createElement("button");
-            updateBtn.textContent = "Update";
-            updateBtn.classList.add("btn", "btn-success", "d-none");
+        // Populate select element with colleges
+        populateCollegeSelect(collegeSelect);
+        const updateBtn = document.createElement("button");
+        updateBtn.textContent = "Update";
+        updateBtn.classList.add("btn", "btn-success", "d-none");
 
-            var selectedcollege;
-            collegeSelect.addEventListener("change", function () {
-              user.college = this.value;
-              selectedcollege = this.value;
-              updateBtn.classList.remove("d-none"); // Show the update button
-            });
-
-            updateBtn.addEventListener("click", function () {
-              assignCollege(user.uid, selectedcollege);
-              updateBtn.classList.add("d-none"); // Hide the update button after updating the user's college
-            });
-            collegeCell.appendChild(collegeSelect);
-            collegeCell.appendChild(updateBtn);
-          }
-
-          row.appendChild(collegeCell);
-          // Append the row to the table body
-          tableBody.appendChild(row);
-
-          const fristname = document.createElement("td");
-          fristname.textContent = user?.name; // Assuming 'title' is the profile information
-          rowd.appendChild(fristname);
-          const emailCelld = document.createElement("td");
-          emailCelld.textContent = user?.email; // Assuming 'email' is the email information
-          rowd.appendChild(emailCelld);
-          const phoned = document.createElement("td");
-          phoned.textContent = user?.phonenumber; // Assuming 'email' is the email information
-          rowd.appendChild(phoned);
-          const bio = document.createElement("td");
-          bio.textContent = user?.gender; // Assuming 'email' is the email information
-          rowd.appendChild(bio);
-          const aoe = document.createElement("td");
-          aoe.textContent = user?.area_of_expertise; // Assuming 'email' is the email information
-          rowd.appendChild(aoe);
-          const college = document.createElement("td");
-          college.textContent = user?.college; // Assuming 'email' is the email information
-          rowd.appendChild(college);
-          const register = document.createElement("td");
-          register.textContent = "click to show"; // Assuming 'email' is the email information
-          register.addEventListener("click", () => showPsyRegister(user.uid));
-          rowd.appendChild(register);
-
-          tableBodyd.appendChild(rowd);
+        var selectedcollege;
+        collegeSelect.addEventListener("change", function () {
+          user.college = this.value;
+          selectedcollege = this.value;
+          updateBtn.classList.remove("d-none"); // Show the update button
         });
 
-        new DataTable("#psy-table-u");
-        new DataTable("#psy-table");
-     
-  
+        updateBtn.addEventListener("click", function () {
+          assignCollege(user.uid, selectedcollege);
+          updateBtn.classList.add("d-none"); // Hide the update button after updating the user's college
+        });
+        collegeCell.appendChild(collegeSelect);
+        collegeCell.appendChild(updateBtn);
+      }
+
+      row.appendChild(collegeCell);
+      // Append the row to the table body
+      tableBody.appendChild(row);
+
+      const fristname = document.createElement("td");
+      fristname.textContent = user?.name; // Assuming 'title' is the profile information
+      rowd.appendChild(fristname);
+      const emailCelld = document.createElement("td");
+      emailCelld.textContent = user?.email; // Assuming 'email' is the email information
+      rowd.appendChild(emailCelld);
+      const phoned = document.createElement("td");
+      phoned.textContent = user?.phonenumber; // Assuming 'email' is the email information
+      rowd.appendChild(phoned);
+      const bio = document.createElement("td");
+      bio.textContent = user?.gender; // Assuming 'email' is the email information
+      rowd.appendChild(bio);
+      const aoe = document.createElement("td");
+      aoe.textContent = user?.area_of_expertise; // Assuming 'email' is the email information
+      rowd.appendChild(aoe);
+      const college = document.createElement("td");
+      college.textContent = user?.college; // Assuming 'email' is the email information
+      rowd.appendChild(college);
+      const register = document.createElement("td");
+      register.textContent = "click to show"; // Assuming 'email' is the email information
+      register.addEventListener("click", () => showPsyRegister(user.uid));
+      rowd.appendChild(register);
+
+      tableBodyd.appendChild(rowd);
+    });
+
+    new DataTable("#psy-table-u");
+    new DataTable("#psy-table");
   }
 
   // Call the function to fetch data and populate the table
@@ -535,8 +532,6 @@ function createAndShowModal(tasks) {
   modalTitle.className = "modal-title";
   modalTitle.id = "recordsModalLabel";
   modalTitle.innerText = "Psychologist Records";
-
-
 
   modalHeader.appendChild(modalTitle);
 

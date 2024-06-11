@@ -1,6 +1,8 @@
+localStorage.clear();
+sessionStorage.clear()
 document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent default form submission
-    console.log(event)
+
     // Fetch form input values
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -11,7 +13,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         username
     }
 
-   console.log(formData)
+
     fetch("https://atman.onrender.com/admin/login", {
         method: "POST",
         headers: {
@@ -38,3 +40,5 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         // Display error message to the user or handle it accordingly
     });
 });
+
+
