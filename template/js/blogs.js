@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             console.error('Error approving blog');
                         }
                     });
-                }
+                }   
 
                 if (event.target.classList.contains('decline')) {
                     const id = event.target.getAttribute('data-id');

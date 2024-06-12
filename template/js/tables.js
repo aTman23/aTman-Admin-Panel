@@ -328,7 +328,7 @@ async function fetchDataAndPopulateTable(page = 1) {
         row.appendChild(emailCell);
 
         const statusCell = document.createElement("td");
-        statusCell.textContent = `${post.userDetails.email} `;
+        statusCell.textContent = `${post.userDetails?.email} `;
         row.appendChild(statusCell);
 
         const deleteCell = document.createElement("td");
